@@ -1,21 +1,9 @@
 import React, { useState } from "react";
-import {
-  AppBar,
-  IconButton,
-  Toolbar,
-  Drawer,
-  Button,
-  Avatar,
-  useMediaQuery,
-} from "@mui/material";
-import {
-  Menu,
-  AccountCircle,
-  Brightness4,
-  Brightness7,
-} from "@mui/icons-material";
+import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } from "@mui/material";
+import { Menu, AccountCircle, Brightness4, Brightness7 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
+import SideBar from "../SideBar/SideBar.jsx";
 import useStyles from "./styles";
 
 const NavBar = () => {
@@ -35,7 +23,7 @@ const NavBar = () => {
               color="inherit"
               edge="start"
               style={{ outline: "none" }}
-              onClick={() => {}}
+              onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
               className={classes.menuButton}
             >
               <Menu />
@@ -77,17 +65,15 @@ const NavBar = () => {
               variant="temporary"
               anchor="right"
               open={mobileOpen}
-              className={classes.drawerBackground}
-              classes={{ papper: classes.drawerPaper }}
+              onClose={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
+              classes={{ paper: classes.drawerPaper }}
               ModalProps={{ keepMounted: true }}
             >
-              {" "}
-              <div>hello</div>
+              <SideBar setMobileOpen={setMobileOpen} />
             </Drawer>
           ) : (
-            <Drawer>
-              {" "}
-              <div>hello</div>
+            <Drawer classes={{ paper: classes.drawerPaper }} variant="permanent" open>
+              <SideBar setMobileOpen={setMobileOpen} />
             </Drawer>
           )}
         </nav>
