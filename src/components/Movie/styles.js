@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
   links: {
     alignItems: "center",
     fontWeight: "bolder",
-    textDecoder: "none",
+    textDecoration: "none",
     [theme.breakpoints.up("xs")]: {
       display: "flex",
       flexDirection: "column",
@@ -28,7 +28,7 @@ export default makeStyles((theme) => ({
     color: theme.palette.text.primary,
     textOverflow: "ellipsis",
     width: "230px",
-    whiteSpace: '"nowrap',
+    whiteSpace: "nowrap",
     overflow: "hidden",
     marginTop: "10px",
     marginBottom: 0,
