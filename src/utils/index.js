@@ -10,7 +10,6 @@ export const moviesApi = axios.create({
 export const fetchToken = async () => {
   try {
     const { data } = await moviesApi.get("/authentication/token/new");
-    console.log(data);
     const token = data.request_token;
     if (data.success) {
       localStorage.setItem("request_token", token);
@@ -22,17 +21,16 @@ export const fetchToken = async () => {
 };
 
 export const createSessionId = async () => {
-  console.log("Creating new session ID");
   const token = localStorage.getItem("request_token");
 
   if (token) {
     try {
       const {
         data: { session_id },
-      } = await moviesApi.post("authentication/session/new", {
+      } = await moviesApi.post(`/authentication/session/new`, {
         request_token: token,
       });
-      console.log(`New session ID: ${session_id}`);
+
       localStorage.setItem("session_id", session_id);
       return session_id;
     } catch (error) {

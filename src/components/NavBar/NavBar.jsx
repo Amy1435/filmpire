@@ -25,18 +25,13 @@ const NavBar = () => {
   const sessionIdFromLocalStorage = localStorage.getItem("session_id");
 
   useEffect(() => {
-    console.log(`Token: ${token}`);
-    console.log(`Session ID from localStorage: ${sessionIdFromLocalStorage}`);
     const logInUser = async () => {
       if (token) {
         if (sessionIdFromLocalStorage) {
-          console.log("Using session ID from localStorage");
           const { data: userData } = await moviesApi.get(`/account?session_id=${sessionIdFromLocalStorage}`);
           dispatch(setUser(userData));
         } else {
-          console.log("Creating new session ID");
           const sessionId = await createSessionId();
-          console.log(`New session ID: ${sessionId}`);
           const { data: userData } = await moviesApi.get(`/account?session_id=${sessionId}`);
           dispatch(setUser(userData));
         }

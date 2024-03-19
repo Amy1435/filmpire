@@ -1,8 +1,10 @@
-import React from "react";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
-  console.log("Profile");
-  return <div>Profile</div>;
+  const { user } = useSelector((state) => state.user);
+  console.log(user);
+
+  return <div>Profile - {user.username}</div>;
 };
 
 export default Profile;
