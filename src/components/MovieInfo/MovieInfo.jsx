@@ -25,14 +25,24 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { selectGenreOrCategory } from "../../features/currentGenreOrCategory";
-import { useGetMovieQuery } from "../../services/TMDB";
+import { useGetMovieQuery, useGetRecommendationsQuery } from "../../services/TMDB";
+import MovieList from "../MovieList/MovieList";
 import genreIcon from "../../assets/genres";
 import useStyles from "./style";
 
 const MovieInfo = () => {
   const { id } = useParams();
+  // data of the movie
   const { data, error, isFetching } = useGetMovieQuery(id);
   console.log(data);
+  // data movies reccommanded
+  const { data: recommendations, isFetching: isRecommendationFetching } = useGetRecommendationsQuery({
+    movie_id: id,
+    list: "/recommendations",
+  });
+
+  console.log(recommendations);
+
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -176,6 +186,16 @@ const MovieInfo = () => {
           </div>
         </Grid>
       </Grid>
+      <Box marginTop="5rem" width="100%">
+        <Typography variant="h3" gutterBottom align="center">
+          You also may like
+        </Typography>
+        {recommendations?.results > 0 ? (
+          <MovieList movies={recommendations} numbeOfMovies={12} />
+        ) : (
+          <Box align="center">Sorry, no recommendations available</Box>
+        )}
+      </Box>
     </Grid>
   );
 };
