@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Modal,
   Typography,
@@ -50,6 +50,7 @@ const MovieInfo = () => {
   const isMovieWatchListed = true;
   const addToFavorite = () => {};
   const addToWatchList = () => {};
+  const [open, setOpen] = useState(false);
 
   if (isFetching) {
     return (
@@ -127,7 +128,7 @@ const MovieInfo = () => {
                       xs={4}
                       md={2}
                       component={Link}
-                      to={`actors/${character.id}`}
+                      to={`/actors/${character.id}`}
                       style={{ textDecoration: "none" }}
                     >
                       <img
@@ -157,7 +158,7 @@ const MovieInfo = () => {
                 >
                   IMDB
                 </Button>
-                <Button onClick={() => {}} href="#" endIcon={<Theaters />}>
+                <Button onClick={() => setOpen(true)} href="#" endIcon={<Theaters />}>
                   Trailer
                 </Button>
               </ButtonGroup>
@@ -190,12 +191,24 @@ const MovieInfo = () => {
         <Typography variant="h3" gutterBottom align="center">
           You also may like
         </Typography>
-        {recommendations?.results > 0 ? (
+        {recommendations?.results.length > 0 ? (
           <MovieList movies={recommendations} numbeOfMovies={12} />
         ) : (
           <Box align="center">Sorry, no recommendations available</Box>
         )}
       </Box>
+      <Modal closeAfterTransition className={classes.modal} open={open} onClose={() => setOpen(false)}>
+        {data?.videos?.results?.length > 0 && (
+          <iframe
+            autoPlay
+            className={classes.video}
+            frameBorder="0"
+            title="Trailer"
+            src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
+            allow="autoplay"
+          />
+        )}
+      </Modal>
     </Grid>
   );
 };

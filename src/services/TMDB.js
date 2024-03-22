@@ -38,8 +38,13 @@ export const tmdbApi = createApi({
     getRecommendations: builder.query({
       query: ({ movie_id, list }) => `/movie/${movie_id}/${list}?api_key=${tmdbKey}`,
     }),
+    // get actor by id
+    getActor: builder.query({
+      query: (actorId) => `/person/${actorId}?api_key=${tmdbKey}`,
+    }),
   }),
 });
 
 // redux automatically creates a hook to use in the other components instead of writing all this code again
-export const { useGetGenresQuery, useGetMoviesQuery, useGetMovieQuery, useGetRecommendationsQuery } = tmdbApi;
+export const { useGetGenresQuery, useGetMoviesQuery, useGetMovieQuery, useGetRecommendationsQuery, useGetActorQuery } =
+  tmdbApi;
