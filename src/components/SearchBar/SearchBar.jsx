@@ -11,6 +11,7 @@ const SearchBar = () => {
   const [query, setQuery] = useState("");
   const classes = useStyles();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   // SEARCH MOVIE
   const handleKeyPress = (event) => {
@@ -19,6 +20,8 @@ const SearchBar = () => {
     }
   };
 
+  // SEARCH BAR JUST ON THE /
+  if (location.path !== "/") return null;
   return (
     <div className={classes.searchContainer}>
       {/* // input */}
