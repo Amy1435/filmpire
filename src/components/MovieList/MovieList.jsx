@@ -3,12 +3,12 @@ import { Grid } from "@mui/material";
 import Movie from "../Movie/Movie";
 import useStyles from "./styles";
 
-const MovieList = ({ movies, numbeOfMovies }) => {
+const MovieList = ({ movies, numbeOfMovies, excudeFirst }) => {
   const classes = useStyles();
-
+  const startFrom = excudeFirst ? 1 : 0;
   return (
     <Grid container className={classes.moviesContainer}>
-      {movies.results.slice(0, numbeOfMovies).map((movie, i) => (
+      {movies.results.slice(startFrom, numbeOfMovies).map((movie, i) => (
         <Movie key={i} movie={movie} i={i} />
       ))}
     </Grid>
