@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
-import { Typography, Button, ButtonGroup, Grid, Box, CircularProgress } from "@mui/material";
+import { Typography, Button, Grid, Box, CircularProgress } from "@mui/material";
 import { Movie as MovieIcon, ArrowBack } from "@mui/icons-material";
 import { useGetActorQuery, useGetActorWorksQuery } from "../../services/TMDB";
 import useStyles from "./style";
@@ -10,10 +10,9 @@ import Pagination from "../Pagination/Pagination";
 const Actors = () => {
   const { id } = useParams();
   const { data, error, isFetching } = useGetActorQuery(id);
-  console.log(data);
+
   const [page, setPage] = useState(1);
   const { data: actorWork, isFetching: isActorWorkFetching } = useGetActorWorksQuery({ id, page });
-  console.log(actorWork);
 
   const classes = useStyles();
   const history = useHistory();
@@ -44,7 +43,7 @@ const Actors = () => {
           {data?.name}
         </Typography>
         <Typography variant="h5" gutterBottom>
-          Born: {data?.birthday}
+          Born: {data?.birthday ? data?.birthday : "Not known"}
         </Typography>
         <Typography variant="body1" align="justify" paragraph>
           {data?.biography ? data?.biography : "Sorry, No biography yet"}
@@ -65,7 +64,7 @@ const Actors = () => {
           </Button>
         </Box>
       </Grid>
-      <Box margin="2rem 0">
+      <Box margin="2rem 0" width="100%">
         <Typography variant="h3" gutterBottom align="center">
           Movies
         </Typography>

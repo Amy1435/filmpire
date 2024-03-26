@@ -10,4 +10,13 @@ export default makeStyles((theme) => ({
       justifyContent: "center",
     },
   },
+  smallMoviesContainer: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    overflow: "auto",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
+    },
+  },
 }));

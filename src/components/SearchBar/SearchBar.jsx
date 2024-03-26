@@ -21,7 +21,7 @@ const SearchBar = () => {
   };
 
   // SEARCH BAR JUST ON THE /
-  if (location.path !== "/") return null;
+  if (location.pathname !== "/") return null;
   return (
     <div className={classes.searchContainer}>
       {/* // input */}

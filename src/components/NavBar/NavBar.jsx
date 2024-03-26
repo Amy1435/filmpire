@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } from "@mui/material";
+import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery, Typography } from "@mui/material";
 import { Menu, AccountCircle, Brightness4, Brightness7, Search } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
@@ -18,6 +18,7 @@ const NavBar = () => {
   const classes = useStyles();
   // if its larger then 600px then its not mobile, if its under its mobile
   const isMobile = useMediaQuery("(max-width:600px)");
+  console.log(isMobile);
   const theme = useTheme();
   const dispatch = useDispatch();
   const colorMode = useContext(ColorModeContext);
@@ -59,6 +60,7 @@ const NavBar = () => {
             {theme.palette.mode === "dark" ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           {!isMobile && <SearchBar />}
+
           <div>
             {!isAuthenticated ? (
               <Button color="inherit" onClick={fetchToken}>

@@ -246,7 +246,7 @@ const MovieInfo = () => {
         )}
       </Box>
       <Modal closeAfterTransition className={classes.modal} open={open} onClose={() => setOpen(false)}>
-        {data?.videos?.results?.length > 0 && (
+        {data?.videos?.results?.length > 0 ? (
           <iframe
             autoPlay
             className={classes.video}
@@ -255,6 +255,10 @@ const MovieInfo = () => {
             src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
             allow="autoplay"
           />
+        ) : (
+          <Typography variant="h3" color="white">
+            No Trailer available
+          </Typography>
         )}
       </Modal>
     </Grid>
