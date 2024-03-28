@@ -194,7 +194,7 @@ const MovieInfo = () => {
         <Grid item container style={{ marginTop: "2rem" }}>
           <div className={classes.buttonContainer}>
             <Grid item xs={12} sm={6} className={classes.buttonContainer}>
-              <ButtonGroup size="medium" variant="outlined">
+              <ButtonGroup size="medium" variant="outlined" style={{ width: "100%" }}>
                 <Button target="blank" rel="nooper noreferrer" href={data?.homepage} endIcon={<Language />}>
                   Website
                 </Button>
@@ -212,7 +212,7 @@ const MovieInfo = () => {
               </ButtonGroup>
             </Grid>
             <Grid item xs={12} sm={6} className={classes.buttonContainer}>
-              <ButtonGroup size="medium" variant="outlined">
+              <ButtonGroup size="medium" variant="outlined" style={{ width: "100%" }}>
                 <Button onClick={addToFavorite} endIcon={isFavorite ? <FavoriteBorderOutlined /> : <Favorite />}>
                   {isFavorite ? "Unfavorited" : "Favorite"}
                 </Button>
